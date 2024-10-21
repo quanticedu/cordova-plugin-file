@@ -537,7 +537,7 @@ public class FileUtils extends CordovaPlugin {
         int requestCode = pendingRequests.createRequest(rawArgs, action, callbackContext);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             PermissionHelper.requestPermissions(this, requestCode,
-                    new String[]{Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO, Manifest.permission.READ_MEDIA_AUDIO});
+                    new String[]{Manifest.permission.READ_MEDIA_AUDIO});
         } else {
             PermissionHelper.requestPermission(this, requestCode, Manifest.permission.READ_EXTERNAL_STORAGE);
         }
@@ -561,9 +561,7 @@ public class FileUtils extends CordovaPlugin {
      */
     private boolean hasReadPermission() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            return PermissionHelper.hasPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
-                    && PermissionHelper.hasPermission(this, Manifest.permission.READ_MEDIA_VIDEO)
-                    && PermissionHelper.hasPermission(this, Manifest.permission.READ_MEDIA_AUDIO);
+            return PermissionHelper.hasPermission(this, Manifest.permission.READ_MEDIA_AUDIO);
         } else {
             return PermissionHelper.hasPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
         }
